@@ -1,0 +1,131 @@
+<html>
+<head>
+	<title>NutriCal</title> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link rel="STYLESHEET" href="css/fontello.css">
+	<link rel="stylesheet" href="CSS/Estilos.css">
+	<link rel="stylesheet" href="CSS/imc.css">
+
+    </head>
+	<body>
+	<header> 
+		<div class="contenedor">
+			<h1 class="icon-saludable"> NutriCal</h1>
+			<input type="checkbox" id="menu-bar">
+			<label for="menu-bar"></label>
+			<label class="icon-menu" for="menu-bar"></label>
+			<nav class="menu">
+				<ul>
+				<li><a href="Index.html" >Volver a la página principal</a></li>
+				<li><a href="#info">Tablas e información</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main>
+	<section id="banner">
+		
+	<img src="img/banner.jpeg">
+	<div class="contenedor">
+		<h2>Calculadoras Nutricionales</h2>
+		<p> Una buena opción para controlar tu estado nutricional</p>
+		<a href="leermas.html">Leer más </a>
+	
+	</div>
+	</section>
+</main>
+</body>
+
+		
+
+<body>
+
+
+
+<center>
+<table width="280" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+<tr>
+   <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+<b>CALCULA TU IMC</b>
+   </font></td>
+</tr>
+<tr>
+   <td bgcolor="#e2fdf4">
+   <font face="arial, verdana, helvetica">
+	<section  id="table">
+		<P> <b> Calculadora de Indice de Masa Corporal</b></P>
+	</section>
+	
+
+<section id="cuerpo">
+<!-- FORMULARIO HTML -->
+<p>Ingrese peso (kg): <input type="text" id="kg"></p>
+<p>Ingrese Altura (m): <input type="text" id="m"></p>
+<button id="calc">Calcular</button>
+<p><b>IMC:</b> <span id="imc"></span></p>
+<p><b>Lectura:</b> <span id="lectura"></span></p>
+
+</font>
+   </td>
+</tr>
+</table>
+</center>
+
+<!-- SCRIPT PARA CALCULAR IMC -->
+<script type="text/javascript">
+	calc = document.getElementById("calc");
+	kg = document.getElementById("kg");
+	m = document.getElementById("m");
+	imc = document.getElementById("imc");
+	lectura = document.getElementById("lectura");
+
+	calc.onclick = function(){
+		if(kg.value!="" && m.value!=""){
+			imcx = (kg.value / (m.value* m.value));
+			imc.innerHTML = imcx
+			console.log(imcx);
+
+			if(imcx<18.5){ lectura.innerHTML = "Peso inferior al normal"; }
+			else if(imcx>=18.5 && imcx<=24.9){ lectura.innerHTML = "Peso normal"; }
+			else if(imcx>=25 && imcx<=29.9){ lectura.innerHTML = "Peso superior al normal"; }
+			else if(imcx>30){ lectura.innerHTML = "Obesidad"; }
+
+		}else{ 
+			alert("Debes ingresar peso y altura.")
+		}
+	}
+</script>
+</section>
+
+<section id="info">
+    <h3>Recomendamos observar los siguientes blogs, para llevar una vida saludable</h3>
+<div class="contenedor">
+    <div class="info-cal">
+        <a href="Tablas.html">
+        <img src="img/tablas.jpeg">
+        </a>
+        <h4>Tablas de verficación de calculadoras nutricionales</h4>
+    </div>
+    <div class="info-cal">
+        <a href="hábitos y estilos para una vida saludable.html">
+        <img src="img/estilos.jpeg">
+        </a>
+        <h4>Hábitos y estilos para una vida saludable </h4>
+    </div>
+</div>
+</section>
+
+
+</main>
+
+<footer>
+    <div class="contenedor">
+        <p class="copy">NutriCal.2021@gmail.com</p>
+        <div class="sociales">
+            <a class="icon-gmail" href="#"></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
