@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>NutriCal</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+        <link rel="STYLESHEET" href="css/fontello.css">
+        <link rel="STYLESHEET" href="css/estilos.css">
+
+</head>
+
+
+<body>
+  <header> 
+    <div class="contenedor">
+        <h1 class="icon-saludable"> NutriCal</h1>
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar"></label>
+        <label class="icon-menu" for="menu-bar"></label>
+        <nav class="menu">
+            <ul>
+            <li><a href="Index.html" >Volver a la página principal</a></li>
+            <li><a href="#info">Tablas e información</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+<section id="banner">
+<img src="img/banner.jpeg">
+<div class="contenedor">
+    <h2>Calculadoras Nutricionales</h2>
+    <p> Una buena opción para controlar tu estado nutricional</p>
+    <a href="leermas.html">Leer más </a>
+
+</div>
+</section>
+
+
+
+
+<center>
+  <table width="280" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+  <tr>
+     <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+  <b>Calculadora de frecuencia cardiaca </b>
+     </font></td>
+  </tr>
+  <tr>
+     <td bgcolor="#e2fdf4">
+     <font face="arial, verdana, helvetica">
+  
+  
+  
+    
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-5 control-label">
+          Edad			</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="edad" placeholder="">
+            <div class="input-group-addon">años</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">
+          Frecuencia cardíaca basal			</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="basal" placeholder="">
+            <div class="input-group-addon">ppm</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">
+          Estado físico			</label>
+        <div class="input-group">
+          <script language="javascript">
+            mi_array = new Array(); mi_array[0] = 40; mi_array[1] = 75; mi_array[2] = 60; mi_array[3] = 85; mi_array[4] = 70; mi_array[5] = 90;
+          </script>
+          <select id="estado">
+          <option value="0">Bajo, principiante</option>
+          <option value="2">Medio, estado físico normal</option>
+          <option value="4">Bueno, deportista experimentado</option>
+          </select>
+        </div>
+      </div>
+  
+  
+  
+  
+  <button class="btn btn-large btn-success" onclick="
+  jQuery('#fcmax').html(220-jQuery('#edad').val());
+  jQuery('#min').html(Math.round(parseInt(jQuery('#basal').val(), 10)+((220-jQuery('#edad').val()-jQuery('#basal').val())*mi_array[jQuery('#estado').val()]/100)));
+  jQuery('#max').html(Math.round(parseInt(jQuery('#basal').val(),10)+((220-jQuery('#edad').val()-jQuery('#basal').val())*mi_array[parseInt(jQuery('#estado').val(),10)+1]/100)));
+  return false;" type="submit">Calcular</button>
+  <p></p>
+  </div></div>
+  <ul class="list-group">
+    <li class="list-group-item">Frecuencia cardíaca máxima = <span id="fcmax" style="color:#cc0000;">220</span> ppm</li>
+    <li class="list-group-item">Frecuencia cardíaca de entrenamiento aeróbico mínima = <span id="min" style="color:#cc0000;"></span> ppm</li>
+    <li class="list-group-item">Frecuencia cardíaca de entrenamiento aeróbico máxima = <span id="max" style="color:#cc0000;"></span> ppm</li>
+   </font>
+     </td>
+  </tr>
+  </table>
+  </ul>
+  </center>
+  <center>
+    <h2>La Calculadora de Frecuencia Cardíaca Máxima</h2>
+    <p>Te indica cuales son tus rangos de frecuencia cardíaca adecuados para realizar entrenamientos, según tus propias características.</P>
+    <P>Se basa en tres parámetros fácilmente medibles: tu edad, tu frecuencia cardíaca basal y tu estado de forma.</P>
+    <h2>La frecuencia cardiaca basal</h2>
+    <P>Es la frecuencia cardiaca que tenemos en completo reposo en posición tendida y relajados.<P/>
+    <P>La mejor forma de calcularla es tomándonos el ritmo cardiaco nada más despertarnos y suele oscilar entre 60 – 70 pulsaciones por minuto.</P>				
+    
+  <h2>¿Cómo interpretar los resultados de la Calculadora de Frecuencia Cardíaca Máxima?</h2>
+  <p>La calculadora te proporciona tres valores diferentes a tener en cuenta:</p>
+  <ul>
+  <li><strong>Frecuencia cardiaca máxima</strong> = límite máximo de pulsaciones que no deberíamos superar si no queremos comprometer nuestra salud</li>
+         <li><strong>Frecuencia cardiaca de entrenamiento aeróbico mínima y máxima</strong> = rango de pulsaciones que es aconsejable mantener mientras realizamos un ejercicio aeróbico. También se conoce como Ritmo Cardiaco Objetivo</li>
+  </ul>
+  
+  </center >
+  
+  
+  <div id="ob_holder" style="display: none;"></div><div class="ob-smartfeed-wrapper"><div class="OUTBRAIN" data-src="https://es.calcuworld.com/deporte-y-ejercicio/calculadora-de-frecuencia-cardiaca-maxima/" data-widget-id="GS_1" data-ob-mark="true" data-browser="firefox" data-os="win32" data-dynload="" data-idx="0" id="outbrain_widget_0"></div>
+     
+          <div class="ob-widget-footer">
+  <div class="ob-pixels">
+          </div>
+  </div>
+      
+  
+  </style>
+                  <style type="text/css" class="ob-custom-css"></style>
+          
+  
+  
+  
+                  <div class="ob-widget-footer">
+  <div class="ob-pixels">
+          </div>
+  </div>
+      </div>
+  </div><div class="OUTBRAIN" data-widget-id="SFD_STP_17" data-card-idx="5" data-feed-father-idx="0" data-ob-mark="true" data-browser="firefox" data-os="win32" data-dynload="" data-idx="5" id="outbrain_widget_5"><div class="ob-widget ob-grid-layout SFD_STP_17" data-dynamic-truncate="true">
+                          </div>
+  </div></div>
+  
+  <div class="related-posts">
+  <div id="related-posts-MRP_all" class="related-posts-type">
+  <h4></h4>
+  </div>
+  </div>																								
+  </script></div><iframe id="ctcg_frame_65349_0" style="margin: 0px; padding: 0px; border: medium none;" scrolling="no" width="1" height="1" frameborder="none"></iframe><iframe src="about:blank" marginwidth="0" marginheight="0" scrolling="no" style="display: none;" id="pa-prebid-frame" frameborder="0"></iframe><iframe src="about:blank" marginwidth="0" marginheight="0" scrolling="no" style="display: none;" id="pa-pbjs-frame" frameborder="0"></iframe><iframe src="about:blank" marginwidth="0" marginheight="0" scrolling="no" style="display: none;" id="pa-pbjs-frame11" frameborder="0"></iframe><iframe src="about:blank" marginwidth="0" marginheight="0" scrolling="no" style="display: none;" id="pa-pbjs-frame20" frameborder="0"></iframe><img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=34403499&amp;ns_ap_sv=2.1511.10&amp;ns_type=hidden&amp;ns_st_it=a&amp;ns_st_sv=4.0.0&amp;ns_st_ad=1&amp;ns_st_sq=1&amp;ns_st_id=234258&amp;ns_st_ec=1&amp;ns_st_cn=1&amp;ns_st_ev=play&amp;ns_st_ct=va&amp;ns_st_cl=0&amp;ns_st_pt=0&amp;c3=vidoomynet&amp;c4=&amp;c6=&amp;ns_ts=1636344150" id="fire-px1" alt="" style="display: none;" width="1" height="1"><<iframe style="display: none; height: 1px;" id="syc-px-ce" width="1" height="1"></iframe><img src="https://stg.vidoomy.com/api/rtbserver/ve?ad_type=Video&amp;adomain=vidoomy.com&amp;c=BR&amp;category=&amp;crid=&amp;deal=&amp;domain=vidoomy.com&amp;dsp=&amp;dsp_ssp=&amp;dt=1&amp;gdpr=&amp;gdprcs=&amp;os=&amp;p=&amp;p_id=1&amp;s=a&amp;seat=1&amp;size=&amp;sspid=0&amp;sync=0&amp;zid=0&amp;uimp=1" id="syc-px-un" style="height: 1px;" alt="" width="1" height="1"><img src="https://ads.stickyadstv.com/auto-user-sync" id="syc-px-stcky" style="height: 1px;" alt="" width="1" height="1" border="0"><iframe id="ob-user-test" style="display:none;width:0;height:0;" src="https://widgets.outbrain.com/nanoWidget/externals/obUserFrame/test.html?lsd=5de80536-dccf-49ab-98b5-d83093b47d60"></iframe><div id="bottomAd" style="font-size: 2px;">&nbsp;</div>
+  
+  <script type="text/javascript" id="" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <div class="pa-global-class pa-pl-18224 pa-pl-adhesion" id="pa-container-1" style="z-index: 50; background: transparent none repeat scroll 0% 0%; position: fixed; top: 0px; left: 0px; width: 116.5px; height: 100vh; pointer-events: none; visibility: hidden; overflow: visible;"><div class="pa-unit-global pa-pl-18224" id="pa-unit-1" style="z-index: 1; background: transparent none repeat scroll 0% 0%; position: absolute; height: 250px; top: 177.5px; width: 0px; max-width: 100%; right: 0px; left: 0px; margin-left: auto; margin-right: auto; pointer-events: auto; overflow: visible;"><div class="pa-observer-px" style="height: 250px; width: 1px; background: transparent none repeat scroll 0% 0%; position: absolute; left: 0px; top: 0px; pointer-events: none;"></div><iframe src="about:blank" marginwidth="0" marginheight="0" scrolling="no" style="width: inherit; height: inherit; display: block; max-width: 100%; margin: 0px;" class="current-frame" frameborder="0"></iframe><div style="position: absolute; right: 0px; top: 0px; width: 75px; height: 45px; z-index: 3;" class="cls-btn-safe-div"></div><div style="text-align: center; position: absolute; border-radius: 0%; background: gray none repeat scroll 0% 0%; color: rgb(255, 255, 255); right: 0px; top: -20px; width: 20px; height: 20px; font-size: 14px; font-weight: normal; padding: 1px; font-family: sans-serif; z-index: 3; cursor: pointer; overflow: hidden; pointer-events: auto; line-height: 18px;" class="cls-btn">X</div></div></div><iframe src="https://e69851fb2cf929933942e7640afa622d.safeframe.googlesyndication.com/safeframe/1-0-38/html/container.html" style="visibility: hidden; display: none;"></iframe>
+  
+  <script type="text/javascript" id="">$(document).ready(function(){window.setTimeout(function(){var a=$("#bottomAd");1==a.length&&(0==a.height()?dataLayer.push({event:"adBlock",adBlockDetected:1}):dataLayer.push({event:"adBlock",adBlockDetected:0}))},1)});</script><iframe style="display: none;" width="0" height="0"></iframe>
+  
+    </style>
+    <div id="st-adblock">
+      <div class="adBanner"></div>
+    </div>
+    </div><iframe width="0" height="0" frameborder="none"></iframe><script  async=""></script></body><iframe id="google_esf" name="google_esf" style="display: none;"></iframe><iframe id="1636344150782646487909" name="1636344150782646487909" style="display: none;"></iframe><iframe id="1636344150784209077460" name="1636344150784209077460" style="display: none;"></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="info">
+  <h3>Recomendamos observar los siguientes blogs, para llevar una vida saludable</h3>
+<div class="contenedor">
+  <div class="info-cal">
+      <a href="Tablas.html">
+      <img src="img/tablas.jpeg">
+      </a>
+      <h4>Tablas de verficación de calculadoras nutricionales</h4>
+  </div>
+  <div class="info-cal">
+      <a href="hábitos y estilos para una vida saludable.html">
+      <img src="img/estilos.jpeg">
+      </a>
+      <h4>Hábitos y estilos para una vida saludable </h4>
+  </div>
+</div>
+</section>
+
+
+</main>
+
+<footer>
+  <div class="contenedor">
+      <p class="copy">NutriCal.2021@gmail.com</p>
+      <div class="sociales">
+          <a class="icon-gmail" href="#"></a>
+      </div>
+  </div>
+</footer>
+</body>
+</html>

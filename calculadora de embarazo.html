@@ -1,0 +1,314 @@
+<html>
+  <head>
+    <title>NutriCal</title> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="STYLESHEET" href="css/fontello.css">
+    <link rel="STYLESHEET" href="css/estilos.css">
+    <link rel="stylesheet" href="css/embarazo.css">
+
+</head>
+<body>
+  <header> 
+      <div class="contenedor">
+          <h1 class="icon-saludable"> NutriCal</h1>
+          <input type="checkbox" id="menu-bar">
+          <label for="menu-bar"></label>
+          <label class="icon-menu" for="menu-bar"></label>
+          <nav class="menu">
+              <ul>
+              <li><a href="Index.html" >Volver a la página principal</a></li>
+              <li><a href="#info">Tablas e información</a></li>
+              </ul>
+          </nav>
+      </div>
+  </header>
+  <main>
+  <section id="banner">
+  <img src="img/banner.jpeg">
+  <div class="contenedor">
+      <h2>Calculadoras Nutricionales</h2>
+      <p> Una buena opción para controlar tu estado nutricional</p>
+      <a href="leermas.html">Leer más </a>
+  
+  </div>
+  </section>
+
+  
+
+
+
+
+
+    <head>
+        <meta charset="UTF-8">
+        
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/ValidarRut.js" type="text/javascript"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if IE]>
+        <script src="http://Nutrical.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    
+        <title>Consulta fecha probable parto</title>
+        
+<script language="javascript">     
+function calcular()
+{
+	fecha_inicio = new Date();
+	dia_parto = new Date();
+	hoy = new Date();
+	lleva = new Date();
+	falta = new Date();
+	
+	day = document.form1.dia.options[document.form1.dia.options.selectedIndex].value;
+	month = document.form1.mes.options[document.form1.mes.options.selectedIndex].value;
+	year = document.form1.anio.options[document.form1.anio.options.selectedIndex].value;
+
+	fecha_dada = new Date(year, (month-1), day);//month+"/"+day+"/"+year
+	
+//Validación de la fechas
+	if ((month=='04' || month=='06' || month=='09' || month=='11') && day==31) 
+	{
+		alert("Este mes no tiene 31 dias!")
+		return false;
+	}
+	if (month == 2) 
+	{ // check for february 29th
+		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+		if (day>29 || (day==29 && !isleap))
+		{
+			alert("Febrero " + year + " no tiene " + day + " días!");
+			return false;
+		}
+	}
+
+	//Calculamos la fecha probable del parto
+	fecha_inicio.setTime(fecha_dada.getTime());
+	dia_parto.setTime(fecha_inicio.getTime() + (280 * 86400000)); //(14 * 86400000) es la fecha de concepción
+    
+	//Calculamos el tiempo que lleva
+	lleva.setTime(hoy.getTime() - fecha_inicio.getTime());
+	llevasemanas = parseInt(((lleva.getTime()/86400000)/7));
+	llevadias = Math.floor(((lleva.getTime()/86400000)%7));
+	//Calculamos el tiempo faltante
+	falta.setTime(dia_parto.getTime() - hoy.getTime());
+	
+	faltasemanas = parseInt(((falta.getTime()/86400000)/7));
+	faltadias = parseInt(((falta.getTime()/86400000)%7));
+
+   if(llevasemanas<0 || llevasemanas >40 || llevadias>280 || llevadias<0 || faltadias < 0 )
+	{ 
+	  alert("Fecha ingresada supera timpo estimado de parto");
+	  return false;
+	}
+        
+	document.getElementById('semanas').innerHTML = llevasemanas + " semanas y " + llevadias +" d&iacute;as";
+	document.getElementById('faltante').innerHTML = faltasemanas + " semanas y " + faltadias+ " d&iacute;as";
+	document.getElementById('fecha_p').innerHTML = dispDate(dia_parto)+", est&aacute;s en la semana "+llevasemanas+" de embarazo.";
+
+}        
+
+function dispDate(dateObj) 
+{
+	month = dateObj.getMonth()+1;
+	var months = new Array(12);
+	months[1] = "Enero";
+	months[2] = "Febrero";
+	months[3] = "Marzo";
+	months[4] = "Abril";
+	months[5] = "Mayo";
+	months[6] = "Junio";
+	months[7] = "Julio";
+	months[8] = "Agosto";
+	months[9] = "Septiembre";
+	months[10] = "Octubre";
+	months[11] = "Noviembre";
+	months[12] = "Diciembre";
+	day   = dateObj.getDate();
+	var days = new Array(7);
+	days[0] = "Domingo";
+	days[1] = "Lunes";
+	days[2] = "Martes";
+	days[3] = "Mi&eacute;rcoles";
+	days[4] = "Jueves";
+	days[5] = "Viernes";
+	days[6] = "S&aacute;bado";
+	dayw = dateObj.getDay();
+	day = (day < 10) ? "0" + day : day;
+	year  = dateObj.getYear();
+	if (year < 2000) year += 1900;
+	return (days[dayw] + " " + day + " de " + months[month] + " del " + year);
+}
+
+
+</script>        
+        
+        
+        
+</head>
+<body>
+    
+    <div class="well" style="max-width: 600px; margin: 0 auto 10px;">      
+    
+<div id="contenedor" class="clearfix">
+
+  <div id="contenido">
+
+    <div id="pag_noticias">
+      <p> </p>
+
+      <h3 id="embarazo">C&aacute;lculo fecha de parto y edad gestacional:</h3>
+      </p>
+      <form name="form1">
+        <br />
+        <table width="555" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#fff5e3">
+          <tr>
+            <td align="center" valign="middle"> 
+            <p align="left">Seleccione fecha de última menstruación
+              <br />
+         
+            </p>
+             </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle"><table width="555" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="185" align="center">Día</td>
+                <td width="185" align="center">Mes</td>
+                <td width="185" align="center">Año</td>
+              </tr>
+              <tr>
+                <td align="center"><select name="dia" class='form-control' style="width: 70px;">
+                                    <option value="1" >1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3" >3</option>
+                                    <option value="4" >4</option>
+                                    <option value="5" selected="selected">5</option>
+                                    <option value="6" >6</option>
+                                    <option value="7" >7</option>
+                                    <option value="8" >8</option>
+                                    <option value="9" >9</option>
+                                    <option value="10" >10</option>
+                                    <option value="11" >11</option>
+                                    <option value="12" >12</option>
+                                    <option value="13" >13</option>
+                                    <option value="14" >14</option>
+                                    <option value="15" >15</option>
+                                    <option value="16" >16</option>
+                                    <option value="17" >17</option>
+                                    <option value="18" >18</option>
+                                    <option value="19" >19</option>
+                                    <option value="20" >20</option>
+                                    <option value="21" >21</option>
+                                    <option value="22" >22</option>
+                                    <option value="23" >23</option>
+                                    <option value="24" >24</option>
+                                    <option value="25" >25</option>
+                                    <option value="26" >26</option>
+                                    <option value="27" >27</option>
+                                    <option value="28" >28</option>
+                                    <option value="29" >29</option>
+                                    <option value="30" >30</option>
+                                    <option value="31" >31</option>
+                                  </select></td>
+                <td align="center"><select id="mes" name="mes" class='form-control' style="width: 130px;">
+  <option value="01" >Enero</option>
+    <option value="02" >Febrero</option>
+    <option value="03" >Marzo</option>
+    <option value="04" >Abril</option>
+    <option value="05" >Mayo</option>
+    <option value="06" >Junio</option>
+    <option value="07" >Julio</option>
+    <option value="08" >Agosto</option>
+    <option value="09" >Septiembre</option>
+    <option value="10" >Octubre</option>
+    <option value="11" selected="selected">Noviembre</option>
+    <option value="12" >Diciembre</option>
+</select></td>
+                <td align="center"><select id="anio" name="anio" class='form-control' style="width: 100px;">
+    <option value="2020" >2020</option>
+      <option value="2021" selected="selected">2021</option>
+    </select></td>
+              </tr>
+            </table>
+                
+              <p>
+                
+  &nbsp;&nbsp;
+
+  &nbsp;&nbsp;
+
+              <input value="Calcular" type="button" class="btn btn-success" onclick="javascript:calcular();"/>             </p></td>
+          </tr>
+        </table>
+        <br />
+
+        <table width="555" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#fff5e3">
+          <tr>
+            <td valign="top"> 
+              <h4>SEMANAS DE EMBARAZO:</h4>
+              <div id="semanas" style="color:#F00; font-weight: bold;"></div>
+              <h4>D&Iacute;AS QUE FALTAN DE EMBARAZO:</h4>
+              <div id="faltante" style="color:#F00; font-weight: bold;"></div>
+              <h4>FECHA PROBABLE DEL PARTO:</h4>              
+              <div id="fecha_p" style="color:#F00; font-weight: bold;"></div> 
+           </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+
+  </div>
+
+</div>
+        
+</div>   
+
+<section id="info">
+  <h3>Recomendamos observar los siguientes blogs, para llevar una vida saludable</h3>
+<div class="contenedor">
+  <div class="info-cal">
+      <a href="Tablas.html">
+      <img src="img/tablas.jpeg">
+      </a>
+      <h4>Tablas de verficación de calculadoras nutricionales</h4>
+  </div>
+  <div class="info-cal">
+      <a href="hábitos y estilos para una vida saludable.html">
+      <img src="img/estilos.jpeg">
+      </a>
+      <h4>Hábitos y estilos para una vida saludable </h4>
+  </div>
+</div>
+</section>
+
+
+</main>
+
+<footer>
+  <div class="contenedor">
+      <p class="copy">NutriCal.2021@gmail.com</p>
+      <div class="sociales">
+          <a class="icon-gmail" href="#"></a>
+      </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>NutriCal</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+        <link rel="STYLESHEET" href="css/fontello.css">
+        <link rel="STYLESHEET" href="css/estilos.css">
+        <link rel="stylesheet" href="Css/Cal basal.css">
+        
+    
+
+    </head>
+
+
+    <body>
+<header> 
+    <div class="contenedor">
+        <h1 class="icon-saludable"> NutriCal</h1>
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar"></label>
+        <label class="icon-menu" for="menu-bar"></label>
+        <nav class="menu">
+            <ul>
+            <li><a href="Index.html" >Volver a la página principal</a></li>
+            <li><a href="#info">Tablas e información</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+<section id="banner">
+<img src="img/banner.jpeg">
+<div class="contenedor">
+    <h2>Calculadoras Nutricionales</h2>
+    <p> Una buena opción para controlar tu estado nutricional</p>
+    <a href="leermas.html">Leer más </a>
+
+</div>
+</section>
+
+
+
+
+
+
+<script language="JavaScript">
+
+    //AJAX
+    function newAjaxUser() { 
+        var xmlhttp=false; 
+        try 
+        { 
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP"); //navegadores no IE
+        }
+        catch(e)
+        { 
+            try
+            { 
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); //para IE
+            } 
+            catch(E) { xmlhttp=false; }
+        }
+        if (!xmlhttp && typeof XMLHttpRequest!="undefined") { xmlhttp=new XMLHttpRequest(); } 
+    
+        return xmlhttp; 
+    }
+    //elminimar espacios
+    function dltSpaces(value) {
+        var x=0, y=value.length-1;
+        while(value.charAt(x)==" ") x++;	
+        while(value.charAt(y)==" ") y--;	
+        return value.substr(x, y-x+1);
+    }
+    
+    //valida nombre
+    function calcIt() {
+        var divMensaje1=document.getElementById("mantener");
+        var divMensaje2=document.getElementById("quemar");
+        var divMensaje3=document.getElementById("subir");
+        var divMensaje4=document.getElementById("tmb");
+    
+        var input1=document.getElementById("peso");
+        var peso=input1.value;
+        
+        var input2=document.getElementById("tipopeso2");
+        var libras=input2.value;
+        
+        var input3=document.getElementById("estatura");
+        var estatura=input3.value;
+        
+        var input4=document.getElementById("edad");
+        var edad=input4.value;
+        
+        var input5=document.getElementById("actividad");
+        var actividad=input5.value;
+        
+        var input6=document.getElementById("sexo1");
+        var sexo=input6.value;
+        
+        var textoAccion="calculando...";
+        
+        //formateando entrada
+        peso=dltSpaces(peso);
+        var pesoEscaped=escape(peso);
+        var pesoFormated = pesoEscaped.replace('%2C','.'); //si encuentra , lo pasa a .
+        
+        //formateando entrada
+        estatura=dltSpaces(estatura);
+        var estaturaEscaped=escape(estatura);
+        var estaturaFormated = estaturaEscaped.replace('%2C','.'); //si encuentra , lo pasa a .
+        
+        //formateando entrada
+        edad=dltSpaces(edad);
+        var edadEscaped=escape(edad);
+        var edadFormated = edadEscaped.replace('%2C','.'); //si encuentra , lo pasa a .
+        
+        if (input2.checked) libras = '1'; else libras = '0';
+        
+        if (input6.checked) sexo = '1'; else sexo = '0';
+        
+        divMensaje1.innerHTML=textoAccion; //cambio del mensaje de error
+        divMensaje2.innerHTML=textoAccion; //cambio del mensaje de error
+        divMensaje3.innerHTML=textoAccion; //cambio del mensaje de error
+        divMensaje4.innerHTML=textoAccion; //cambio del mensaje de error
+        
+        //ajax
+        /*
+        var ajax=newAjaxUser();
+        ajax.open("POST", "http://www.adelgazarapido.org//wp-content/themes/adelgazatheme/calc2.php", true);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.send("peso="+pesoFormated+"&libras="+libras+"&estatura="+estaturaFormated+"&edad="+edadFormated+"&actividad="+actividad+"&sexo="+sexo);
+    
+        ajax.onreadystatechange=function() {
+            if (ajax.readyState==4) {
+                input1.value=pesoFormated;
+                //input.disabled=false;
+                //var response = ajax.responseText;
+                //divMensaje1.innerHTML=response;
+                
+                var response = ajax.responseText.split("[BRK]");
+                divMensaje1.innerHTML=response[0];
+                divMensaje2.innerHTML=response[1];
+                divMensaje3.innerHTML=response[2];
+                divMensaje4.innerHTML=response[3];
+            }
+        }
+        */
+        
+        if (libras == 1) {
+            peso *= 0.4536;
+        }
+        
+        if (sexo == 1) {
+            var result1 = 66 + (13.7 * peso) + (5 * estatura) - (6.8 * edad);
+        } else {
+            var result1 = 655 + (9.6 * peso) + (1.8 * estatura) - (4.7 * edad);
+        }
+        
+        divMensaje4.innerHTML=Math.round(result1);
+        divMensaje1.innerHTML=Math.round(result1 * actividad);
+        divMensaje3.innerHTML=Math.round(result1 * actividad * 1.15);
+        divMensaje2.innerHTML=Math.round(result1 * actividad * 0.85);
+    }
+    
+    
+    </script>	
+
+    
+    
+    <form id="basal" name="calc" class="form-horizontal"> 
+      <fieldset> 
+    <div  class="well well-large">
+     <div class="form-group">
+         
+        <label class="col-sm-4 control-label" for="peso">Sexo:</label> 
+        
+        <div class="col-sm-8">
+        <label class="checkbox inline" for="sexo1">
+            <input type="radio" checked="" value="M" id="sexo1" name="sexo"> Hombre	</label>
+        
+        <label class="checkbox inline" for="sexo2">
+            <input type="radio" value="F" id="sexo2" name="sexo"> Mujer	</label>
+        </div>
+      </div>
+     <div class="form-group">
+        <label for="peso" class="col-sm-4 control-label">Peso:</label> 
+        <div class="col-sm-8">
+        <input maxlength="5" type="text" class="span2" id="peso" name="peso"> 
+        <label class="checkbox inline"  for="tipopeso1" class="noprompt"><input type="radio" checked="" value="K" id="tipopeso1" name="tipopeso"> Kilos</label> 
+        <label class="checkbox inline"  for="tipopeso2" class="noprompt"><input type="radio" value="L" id="tipopeso2" name="tipopeso"> Libras</label> 
+        </div>
+      </div>
+     <div class="form-group">
+        <label for="estatura" class="col-sm-4 control-label">Estatura:</label> 
+        <div class="col-sm-8">
+        <div class="input-group">
+        <input maxlength="3" id="estatura" type="text" class="span2 form-control" name="estatura"> 
+        <div class="input-group-addon">cm</div> 
+        </div>
+        </div>
+      </div>
+       <div class="form-group"> 
+        <label for="edad" class="col-sm-4 control-label">Edad:</label> 
+        <div class="col-sm-8">
+        <div class="input-group">
+        <input maxlength="2" type="text" class="span2 form-control" id="edad" name="edad"> 
+        <div class="input-group-addon">años</div>
+        </div>
+        </div> 
+      </div>
+     <div class="form-group"> 
+        <label for="actividad" class="col-sm-4 control-label">Nivel de actividad:</label> 
+        <div class="col-sm-8">
+        <select id="actividad" size="1" name="actividad"> 
+          <option selected="true" value="1.2">Sedentario</option> 
+          <option value="1.375">Actividad ligera</option> 
+          <option value="1.55">Actividad moderada</option> 
+          <option value="1.725">Actividad intensa</option> 
+          <option value="1.9">Actividad muy intensa</option> 
+        </select>   </div> </div>
+      <div align="center"> 
+        <span type="button" name="Button1" class="btn btn-success" id="Button1" onclick="calcIt();return false;">
+        <p style="background:rgb(181, 255, 246); color:rgb(12, 11, 11); font-weight: bold; padding: 15px; border: 2px solid #bdfae6; border-radius: 3px;">CALCULAR</p>
+    </div> 
+    </div>
+    
+      <div class="alert alert-success">
+      <div> 
+          <label>Metabolismo basal:</label> 
+          <span id="tmb" style="margin-left: .5em; font-size:18px; font-weight:bold;"></span>
+      </div>
+     <div> 
+          <label>Calorías necesarias para mantener el peso:</label> 
+          <span id="mantener" style="margin-left: .5em; font-size:18px; font-weight:bold;"></span>
+      </div>
+      <div>
+          <label>Calorías para adelgazar:</label> 
+          <span id="quemar" style="margin-left: .5em; font-size:18px; font-weight:bold;"></span>
+      </div>
+      <div>
+          <label>Calorías para subir de peso:</label> 
+          <span id="subir" style="margin-left: .5em; font-size:18px; font-weight:bold;"></span>
+      </div> 
+      </div>
+      </fieldset> 
+    </form>
+
+
+    <section id="info">
+        <h3>Recomendamos observar los siguientes blogs, para llevar una vida saludable</h3>
+    <div class="contenedor">
+        <div class="info-cal">
+            <a href="Tablas.html">
+            <img src="img/tablas.jpeg">
+            </a>
+            <h4>Tablas de verficación de calculadoras nutricionales</h4>
+        </div>
+        <div class="info-cal">
+            <a href="hábitos y estilos para una vida saludable.html">
+            <img src="img/estilos.jpeg">
+            </a>
+            <h4>Hábitos y estilos para una vida saludable </h4>
+        </div>
+    </div>
+    </section>
+    
+    
+    </main>
+    
+    <footer>
+        <div class="contenedor">
+            <p class="copy">NutriCal.2021@gmail.com</p>
+            <div class="sociales">
+                <a class="icon-gmail" href="#"></a>
+            </div>
+        </div>
+    </footer>
+    
+                    
+            
+         
+     </script>
+     </body>
+</html>
+                    
+            
+         
+   
